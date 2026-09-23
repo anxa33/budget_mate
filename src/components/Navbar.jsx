@@ -1,17 +1,40 @@
+import React from "react";
+import { FaBell } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import "./Navbar.css";
 
-import '../pages/Dashboard.css';
-import { FaBell } from 'react-icons/fa';
-export default function Navbar(){
-    return(
-    //  <div className="dashboard-header">
-    //     <h1 className="dashboard-title">Dashboard</h1>
-        <div className="header-right">
-          <button className="notif-btn" title="Notifications"><FaBell/></button>
-          <div className="user-info">
-            <span className="user-name">Anxa</span>
-            <div className="user-avatar">AA</div>
-          </div>
+function Navbar({ onNavigate }) {
+  const navigate = useNavigate();
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const name = user?.name || "User";
+  const initial = name.charAt(0).toUpperCase();
+
+  const goToProfile = () => {
+    if (onNavigate) {
+      onNavigate("Profile");
+    } else {
+      navigate("/profile");
+    }
+  };
+
+  return (
+    <div className="navbar">
+
+      <button
+        className="profile-button"
+        onClick={goToProfile}
+      >
+        <span className="name">{name}</span>
+
+        <div className="avatar">
+          {initial}
         </div>
-    //   </div>
-    );
+      </button>
+
+    </div>
+  );
 }
+
+export default Navbar;

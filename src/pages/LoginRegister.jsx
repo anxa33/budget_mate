@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const API = "http://localhost:8000";
+const API = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 const styles = {
   page: {
@@ -308,7 +308,8 @@ function RegisterCard({ onRegisterSuccess }) {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.detail || "Registration failed");
-      setSuccess(`Account created for ${data.name}! You can now log in. ✓`);
+      // backend returns { message, user_id } — not "name" — so use the name we already have
+      setSuccess(`Account created for ${form.name}! You can now log in. ✓`);
       setForm({ name: "", email: "", password: "", confirm: "" });
       if (onRegisterSuccess) onRegisterSuccess(data);
     } catch (err) {

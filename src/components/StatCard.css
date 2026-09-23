@@ -1,4 +1,4 @@
-.stat-card {
+.card {
   background: #fff;
   border-radius: 14px;
   padding: 20px 20px 16px;
@@ -8,18 +8,18 @@
   box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
 
-.stat-card-header {
+.card-header {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 4px;
 }
 
-.stat-icon {
+.card-icon {
   font-size: 18px;
 }
 
-.stat-label {
+.card-label {
   font-size: 12.5px;
   color: #888;
   font-weight: 500;
@@ -27,17 +27,17 @@
   letter-spacing: 0.4px;
 }
 
-.stat-value {
+.card-value {
   font-size: 26px;
   font-weight: 700;
   letter-spacing: -0.5px;
 }
 
-.stat-value.green { color: #16a34a; }
-.stat-value.blue  { color: #2563eb; }
-.stat-value.red   { color: #dc2626; }
+.card-value.green { color: #16a34a; }
+.card-value.blue  { color: #2563eb; }
+.card-value.red   { color: #dc2626; }
 
-.stat-change {
+.card-change {
   font-size: 12px;
   font-weight: 500;
   display: flex;
@@ -45,5 +45,5 @@
   gap: 4px;
 }
 
-.stat-change.up   { color: #16a34a; }
-.stat-change.down { color: #dc2626; }
+.card-change.up   { color: #16a34a; }
+.card-change.down { color: #dc2626; }

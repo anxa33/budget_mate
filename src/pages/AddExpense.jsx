@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 
 
 const CATEGORIES = [
-  "Food & Dining",
+  "Food",
   "Transportation",
   "Shopping",
   "Entertainment",
@@ -28,7 +28,7 @@ const PAYMENT_METHODS = [
 export default function AddExpense() {
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
-  const [date, setDate] = useState("2026-06-01");
+  const [date, setDate] = useState("2026-09-01");
   const [paymentMethod, setPaymentMethod] = useState("");
   const [note, setNote] = useState("");
   const [activeNav, setActiveNav] = useState("Expenses");
@@ -45,6 +45,7 @@ export default function AddExpense() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify({
         amount: parseFloat(amount),
@@ -193,7 +194,7 @@ export default function AddExpense() {
 
       {/* Main */}
       <main style={styles.main}>
-        <Navbar/>
+        {/* <Navbar/> */}
         <div style={styles.card}>
           {/* Header */}
           
@@ -213,11 +214,12 @@ export default function AddExpense() {
                 <input
                   className="form-input"
                   type="number"
+                  min="1"
                   placeholder="Enter amount"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
                 />
-                <span className="amount-badge">NPR</span>
+                <span className="amount-badge">Rs</span>
               </div>
             </div>
 

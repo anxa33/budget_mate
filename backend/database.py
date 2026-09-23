@@ -1,13 +1,15 @@
-import mysql.connector
+import psycopg2
+
 
 def get_connection():
-    return mysql.connector.connect(
+    return psycopg2.connect(
         host="localhost",
-        user="root",
-        password="",
-        database="budget_mate"
+        user="postgres",
+        password="root",
+        database="budgetmate",
+        port="5432"
     )
-# print("Connected successfully")
+
 
 def close_connection(conn, cursor=None):
     if cursor:

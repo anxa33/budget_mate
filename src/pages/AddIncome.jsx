@@ -76,6 +76,7 @@ export default function AddIncome({ onNavigate }) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({
           source: form.source,

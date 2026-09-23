@@ -1,5 +1,5 @@
 .sidebar {
-  width: 210px;
+  width: 230px;
   min-width: 210px;
   background: #1a1a35;
   display: flex;
@@ -16,8 +16,10 @@
   padding: 0 12px 28px;
 }
 
-.logo-icon {
-  font-size: 22px;
+.logo-icon img {
+  width: 50px;
+  height: 50px;
+  color:rgb(175, 157, 168);
 }
 
 .logo-text {
@@ -43,7 +45,7 @@
   border: none;
   background: transparent;
   color: #9898b8;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   text-align: left;

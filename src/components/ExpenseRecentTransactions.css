@@ -1,0 +1,45 @@
+.recent-table-wrap{
+    overflow-x:auto
+}
+.recent-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:12px
+}
+.recent-table th{
+    color:#6b7280;
+    font-weight:600;
+    text-align:left;
+    padding:9px;
+    border-bottom:1px solid #e5e7eb
+}
+.recent-table td{
+    padding:10px 9px;
+    border-bottom:1px solid #f3f4f6;
+    color:#374151
+}
+.recent-table button{
+    border:0;
+    background:none;
+    cursor:pointer;
+    margin-right:7px;
+    color:#6b7280
+}
+.tx-category{
+    display:inline-flex;
+    align-items:center;
+    gap:6px
+}
+.expense-amount{
+    font-weight:700;
+    color:#dc2626
+}
+.table-empty{
+    text-align:center;
+    padding:25px!important;
+    color:#9ca3af
+}
+.income-source{
+    color:#0f6e56
+}
+.income-amount{font-weight:700;color:#059669}
