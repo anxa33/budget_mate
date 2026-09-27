@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 const API = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
@@ -26,17 +27,16 @@ const styles = {
   },
 
   iconBox: {
-    width: "52px",
-    height: "52px",
-    background: "linear-gradient(135deg, #6C63FF 0%, #9B8FFF 100%)",
-    borderRadius: "14px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: "24px",
-    marginBottom: "18px",
+    width: "80px",
+    height: "80px",
+    margin: "0 auto 20px",
   },
 
+  logo: {
+    width: "100%",
+    height: "100%",
+    objectFit: "contain",
+  },
   title: {
     fontSize: "20px",
     fontWeight: "700",
@@ -180,7 +180,7 @@ export default function Login({ onLoginSuccess }) {
       <div style={styles.card}>
 
         <div style={styles.iconBox}>
-          💼
+          <img src={logo} alt="BudgetMate Logo" style={styles.logo} />
         </div>
 
         <h1 style={styles.title}>
