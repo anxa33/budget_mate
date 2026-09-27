@@ -145,7 +145,7 @@ export default function GoalOptimizerModal({ isOpen, onClose, token, onGoalSaved
                 <input
                   type="number"
                   name="target_amount"
-                  min="0.01"
+                  min="1000"
                   step="any"
                   required
                   placeholder="Rs. 50000"

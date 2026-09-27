@@ -24,9 +24,6 @@ function ExpensesDashboard({ onNavigate }) {
     Authorization: `Bearer ${localStorage.getItem("token")}`,
   });
 
-  // ==========================================
-  // FETCH EXPENSES + SUMMARY FROM BACKEND
-  // ==========================================
   const fetchExpenses = async () => {
     setLoadingList(true);
     try {
@@ -68,9 +65,7 @@ function ExpensesDashboard({ onNavigate }) {
     refreshAll();
   }, []);
 
-  // ==========================================
-  // ADD EXPENSE MODAL HANDLERS
-  // ==========================================
+
   const handleAddExpenseClick = () => setShowAddExpense(true);
 
   const handleCloseAddExpense = () => {
@@ -82,7 +77,6 @@ function ExpensesDashboard({ onNavigate }) {
 
   return (
     <div className="expenses-dashboard">
-      {/* Header */}
       <div className="headsection">
         <div className="expenses-heading">
           <h1>Expenses</h1>

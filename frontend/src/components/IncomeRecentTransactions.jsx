@@ -6,8 +6,10 @@ import {
   FaChartLine,
   FaGift,
   FaMoneyBillWave,
+  FaEdit,
 } from "react-icons/fa";
 import { SOURCE_COLORS } from "./IncomeBySourceChart";
+import { FaMagnifyingGlass, FaTrashCan } from "react-icons/fa6";
 
 const API_BASE = "http://127.0.0.1:8000";
 const PAGE_SIZE = 5;
@@ -18,17 +20,10 @@ export const PAYMENT_METHODS = ["Cash", "eSewa", "Khalti", "Bank Transfer"];
 function SourceBadge({ source }) {
   const key = (source || "").toLowerCase().replace(/\s+/g, "");
   const style = SOURCE_COLORS[key] || SOURCE_COLORS.other;
-  const icons = {
-    salary: <FaBriefcase size={14} />,
-    freelance: <FaLaptopCode size={14} />,
-    business: <FaStore size={14} />,
-    investment: <FaChartLine size={14} />,
-    other: <FaGift size={14} />,
-  };
+
   return (
-    <span className="source-badge" style={{ background: style.bg, color: style.text }}>
+    <span className="source-badge">
       <span style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-        {icons[key] || <FaMoneyBillWave size={14} />}
       </span>
       <span>{source}</span>
     </span>
@@ -37,7 +32,7 @@ function SourceBadge({ source }) {
 
 const inputStyle = {
   border: "0.5px solid #d1d5db", borderRadius: 6,
-  padding: "6px 10px", fontSize: 13, color: "#111827",
+  padding: "6px 10px", fontSize: 13,
   background: "#fff", outline: "none",
 };
 
@@ -159,7 +154,7 @@ export default function IncomeRecentTransactions({
         <span className="expense-card-title">Recent Income Transactions (Last {recentLimit})</span>
         <div className="income-table-controls">
           <div style={{ position: "relative" }}>
-            <span className="income-search-icon">🔍</span>
+            <span className="income-search-icon"><FaMagnifyingGlass/></span>
             <input
               type="text"
               placeholder="Search income..."
@@ -171,7 +166,7 @@ export default function IncomeRecentTransactions({
           <select
             value={sourceFilter}
             onChange={(e) => { setSourceFilter(e.target.value); setPage(1); }}
-            style={inputStyle}
+            style={{ ...inputStyle, color: "#111827" }}
           >
             {["All Sources", ...INCOME_SOURCES].map((s) => (
               <option key={s}>{s}</option>
@@ -180,7 +175,7 @@ export default function IncomeRecentTransactions({
         </div>
       </div>
 
-      <div style={{ overflowX: "auto" }}>
+      <div style={{ overflowX: "auto",textAlign: "left" }}>
         <table className="income-table">
           <thead>
             <tr>
@@ -204,14 +199,14 @@ export default function IncomeRecentTransactions({
                   <td>{t.date}</td>
                   <td><SourceBadge source={t.source} /></td>
                   <td className="muted">{t.note}</td>
-                  <td className="amount-positive">
-                    + Rs. {Number(t.amount).toLocaleString()}
+                  <td className="amount-positive" style={{ color: "green" }}>
+                     Rs. {Number(t.amount).toLocaleString()}
                   </td>
                   <td className="muted">{t.method}</td>
                   <td>
                     <div style={{ display: "flex", gap: 8 }}>
-                      <button title="Edit" className="icon-btn edit" onClick={() => handleEdit(t.id)}>✏️</button>
-                      <button title="Delete" className="icon-btn delete" onClick={() => handleDelete(t.id)}>🗑️</button>
+                      <button title="Edit" className="icon-btn edit" onClick={() => handleEdit(t.id)}><FaEdit/></button>
+                      <button title="Delete" className="icon-btn delete" onClick={() => handleDelete(t.id)}><FaTrashCan/></button>
                     </div>
                   </td>
                 </tr>

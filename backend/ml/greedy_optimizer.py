@@ -17,7 +17,6 @@ def greedy_expense_reduction(
 
     remaining_to_reduce = additional_saving_needed
 
-    # Greedy pass: largest category first, take the biggest bite allowed.
     for category in sorted(categories, key=lambda c: c.get("total", 0), reverse=True):
         if remaining_to_reduce <= 0:
             break

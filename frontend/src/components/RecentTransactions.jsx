@@ -95,7 +95,7 @@ export default function RecentTransactions() {
             <span className="tx-category">{tx.category}</span>
 
             <span className="tx-amount negative">
-              - NPR {Number(tx.amount).toLocaleString()}
+              Rs. {Number(tx.amount).toLocaleString()}
             </span>
           </div>
         ))

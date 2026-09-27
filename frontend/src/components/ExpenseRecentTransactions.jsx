@@ -1,16 +1,9 @@
 import React, { useMemo, useState } from "react";
 import {
-  FaUtensils,
-  FaBus,
-  FaShoppingBag,
-  FaFilm,
-  FaHeartbeat,
-  FaHome,
-  FaBolt,
-  FaGraduationCap,
-  FaPlane,
-  FaEllipsisH,
+FaEdit,
+FaSearch
 } from "react-icons/fa";
+import { FaTrashCan, } from "react-icons/fa6";
 
 const API_BASE = "http://127.0.0.1:8000";
 const PAGE_SIZE = 5;
@@ -23,6 +16,7 @@ export const CATEGORIES = [
   "Health & Fitness",
   "Housing",
   "Utilities",
+
   "Education",
   "Travel",
   "Other",
@@ -39,37 +33,35 @@ export const PAYMENT_METHODS = [
 ];
 
 const CATEGORY_STYLE = {
-  food: { bg: "#FDEDE3", text: "#B5490C", dot: "#EF7B34", icon: <FaUtensils size={14} /> },
-  transportation: { bg: "#E6F1FB", text: "#185FA5", dot: "#378ADD", icon: <FaBus size={14} /> },
-  shopping: { bg: "#EEEDFE", text: "#534AB7", dot: "#7F77DD", icon: <FaShoppingBag size={14} /> },
-  entertainment: { bg: "#FCE9F3", text: "#A3225D", dot: "#E24B94", icon: <FaFilm size={14} /> },
-  "health & fitness": { bg: "#E1F5EE", text: "#0F6E56", dot: "#1D9E75", icon: <FaHeartbeat size={14} /> },
-  housing: { bg: "#FAEEDA", text: "#854F0B", dot: "#EF9F27", icon: <FaHome size={14} /> },
-  utilities: { bg: "#FEF6DA", text: "#8A6D00", dot: "#E2C023", icon: <FaBolt size={14} /> },
-  education: { bg: "#E7F3FE", text: "#0B5CAD", dot: "#3C9BEF", icon: <FaGraduationCap size={14} /> },
-  travel: { bg: "#E4F7F5", text: "#0D7A6E", dot: "#2CC4B2", icon: <FaPlane size={14} /> },
-  other: { bg: "#FCEBEB", text: "#A32D2D", dot: "#E24B4A", icon: <FaEllipsisH size={14} /> },
+  food: { bg: "#FDEDE3", text: "#B5490C", dot: "#EF7B34" },
+  transportation: { bg: "#E6F1FB", text: "#185FA5", dot: "#378ADD" },
+  shopping: { bg: "#EEEDFE", text: "#534AB7", dot: "#7F77DD"},
+  entertainment: { bg: "#FCE9F3", text: "#A3225D", dot: "#E24B94"},
+  "health & fitness": { bg: "#E1F5EE", text: "#0F6E56", dot: "#1D9E75" },
+  housing: { bg: "#FAEEDA", text: "#854F0B", dot: "#EF9F27" },
+  utilities: { bg: "#FEF6DA", text: "#8A6D00", dot: "#E2C023" },
+  education: { bg: "#E7F3FE", text: "#0B5CAD", dot: "#3C9BEF" },
+  travel: { bg: "#E4F7F5", text: "#0D7A6E", dot: "#2CC4B2" },
+  other: { bg: "#FCEBEB", text: "#A32D2D", dot: "#E24B4A" },
 };
 
 function categoryStyle(category) {
   const key = (category || "").toLowerCase().trim();
   return CATEGORY_STYLE[key] || CATEGORY_STYLE.other;
 }
-
 function CategoryBadge({ category }) {
   const style = categoryStyle(category);
   return (
-    <span className="category-badge" style={{ background: style.bg, color: style.text }}>
-      {style.icon}
       <span>{category}</span>
-    </span>
-  );
+    );
 }
 
 const inputStyle = {
   border: "0.5px solid #d1d5db", borderRadius: 6,
   padding: "6px 10px", fontSize: 13, color: "#111827",
   background: "#fff", outline: "none",
+ 
+ 
 };
 
 export default function ExpenseRecentTransactions({
@@ -201,7 +193,7 @@ export default function ExpenseRecentTransactions({
         <span className="expense-card-title">Recent Transactions (Last {recentLimit})</span>
         <div className="expense-table-controls">
           <div style={{ position: "relative" }}>
-            <span className="expense-search-icon">🔍</span>
+            <span className="expense-search-icon"><FaSearch/></span>
             <input
               type="text"
               placeholder="Search expenses..."
@@ -222,7 +214,7 @@ export default function ExpenseRecentTransactions({
         </div>
       </div>
 
-      <div style={{ overflowX: "auto" }}>
+      <div style={{ overflowX: "auto" ,textAlign:"left"}}>
         <table className="expense-table">
           <thead>
             <tr>
@@ -250,14 +242,14 @@ export default function ExpenseRecentTransactions({
                   <td>{item.displayDate}</td>
                   <td><CategoryBadge category={item.category} /></td>
                   <td className="muted">{item.note || "—"}</td>
-                  <td className="amount-negative">
-                    − Rs. {Number(item.amount).toLocaleString()}
+                  <td className="amount-negative"style={{ color:"red" }}>
+                     Rs. {Number(item.amount).toLocaleString()}
                   </td>
                   <td className="muted">{item.payment_method}</td>
                   <td>
                     <div style={{ display: "flex", gap: 8 }}>
-                      <button title="Edit" className="icon-btn edit" onClick={() => handleEditClick(item)}>✏️</button>
-                      <button title="Delete" className="icon-btn delete" onClick={() => handleDelete(item.id)}>🗑️</button>
+                      <button title="Edit" className="icon-btn edit" onClick={() => handleEditClick(item)}><FaEdit/></button>
+                      <button title="Delete" className="icon-btn delete" onClick={() => handleDelete(item.id)}><FaTrashCan/></button>
                     </div>
                   </td>
                 </tr>

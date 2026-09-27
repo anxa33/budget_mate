@@ -24,7 +24,6 @@ function Navbar({ onNavigate }) {
 
       <button
         className="profile-button"
-        onClick={goToProfile}
       >
         <span className="name">{name}</span>
 

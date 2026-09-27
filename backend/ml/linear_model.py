@@ -29,7 +29,7 @@ def fit_linear_regression(x: List[float], y: List[float]) -> Dict[str, float]:
 
 def predict(slope: float, intercept: float, x: float) -> float:
     return slope * x + intercept
-#Goal Completion Forecasting
+
 
 MAX_FORECAST_MONTHS = 120  # cap the search at 10 years so we never loop forever
 
@@ -60,7 +60,7 @@ def forecast_goal_completion(
             "monthly_trend_slope": 0.0,
             "projected_next_month_saving": 0.0,
             "feasible": True,
-            "message": "You've already reached this goal - congratulations!",
+            "message": "You've already reached this goal.",
         }
 
     n = min(len(monthly_income), len(monthly_expense))
