@@ -1,0 +1,133 @@
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+.income-container{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px 20px;
+}
+
+.income-form{
+    width:100%;
+    max-width:500px;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.income-form h2{
+    text-align:center;
+    margin-bottom:25px;
+    color:#333;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:7px;
+    font-weight:600;
+    color:#444;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+    transition:.3s;
+
+    background-color: #b7b4b4;
+    color: #333333;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+
+    outline:none;
+    border-color:#6a5acd;
+}
+
+.form-group textarea{
+    resize:vertical;
+}
+
+button{
+    width:100%;
+    padding:13px;
+    border:none;
+    background:#6a5acd;
+    color:white;
+    font-size:16px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#5847c7;
+}
+
+button:disabled{
+    background:#9f97d8;
+    cursor:not-allowed;
+}
+
+small{
+    color:red;
+    display:block;
+    margin-top:5px;
+}
+
+.error-box{
+    background:#ffe4e4;
+    color:#b30000;
+    padding:12px;
+    border-radius:8px;
+    margin-bottom:18px;
+}
+
+.success-box{
+    background:#e7ffe7;
+    color:#006b2d;
+    padding:12px;
+    border-radius:8px;
+    margin-bottom:18px;
+}
+
+.button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.button-group button {
+    flex: 1;
+}
+
+.cancel-btn {
+    background: #e5e7eb;
+    color: #333;
+}
+
+.cancel-btn:hover {
+    background: #d1d5db;
+}

@@ -1,0 +1,39 @@
+.expense-stat-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.expense-stat-card
+    {background:#fff;
+        border:1px solid #e5e7eb;
+        border-radius:12px;
+        padding:17px;display:flex;
+        gap:13px;align-items:center}
+.expense-stat-icon{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    background:#f0edff;
+    color:#534ab7
+}
+.expense-stat-label{
+    font-size:11px;
+    color:#6b7280}
+.expense-stat-value{
+    font-size:18px;
+    font-weight:700;
+    color:#111827;
+    margin:4px 0}
+.expense-stat-sub{
+    font-size:11px;
+    color:#6b7280
+}
+@media(max-width:900px){
+.expense-stat-grid{
+    grid-template-columns:repeat(2,1fr)
+}
+}
+@media(max-width:520px){
+    .expense-stat-grid{
+    grid-template-columns:1fr
+}
+}
