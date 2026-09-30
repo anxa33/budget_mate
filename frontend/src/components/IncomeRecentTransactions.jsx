@@ -33,7 +33,8 @@ function SourceBadge({ source }) {
 const inputStyle = {
   border: "0.5px solid #d1d5db", borderRadius: 6,
   padding: "6px 10px", fontSize: 13,
-  background: "#fff", outline: "none",
+  color:"black", background:"white",
+  outline: "none",
 };
 
 export default function IncomeRecentTransactions({
@@ -204,7 +205,7 @@ export default function IncomeRecentTransactions({
                   </td>
                   <td className="muted">{t.method}</td>
                   <td>
-                    <div style={{ display: "flex", gap: 8 }}>
+                    <div style={{ display: "flex", gap: 8,}}>
                       <button title="Edit" className="icon-btn edit" onClick={() => handleEdit(t.id)}><FaEdit/></button>
                       <button title="Delete" className="icon-btn delete" onClick={() => handleDelete(t.id)}><FaTrashCan/></button>
                     </div>
@@ -247,7 +248,7 @@ export default function IncomeRecentTransactions({
             </div>
 
             <div className="modal-body">
-              <div className="modal-grid">
+              <div className="modal-grid" >
                 <div style={{ gridColumn: "1 / -1" }}>
                   <label className="modal-label">Amount</label>
                   <input

@@ -1,192 +1,146 @@
-.recommendations-page {
-  min-height: 100vh;
-  background-color: #f5f6fa;
-}
-
-.recommendations-topbar {
-  background: #fff;
-  border-bottom: 1px solid #e5e7eb;
-  padding: 18px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-
-.recommendations-toptitle h1 {
-    font-size: 20px;
-    font-weight: 610;
-    color: #1e1e2d;
-    padding-left: 30px;
-}
-
-.recommendations-topbar p {
-  margin: 6px 0 0;
-  font-size: 13px;
-  color: #64748b;
-}
-
-.recommendations-content {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 24px 20px 40px;
-}
-
-.rec-empty-text {
-  color: #94a3b8;
-  font-size: 14px;
-  text-align: center;
-  margin-top: 40px;
-}
-
-.rec-error-text {
-  color: #dc2626;
-}
-
-.rec-empty-box {
-  border: 1px dashed #cbd5e1;
-  border-radius: 12px;
-  padding: 28px;
-  text-align: center;
-  color: #64748b;
-  font-size: 14px;
-  background: #fff;
-}
+/* Append to Recommendations.css.
+   Remove the older .rec-forecast-box / .rec-forecast-icon / .rec-stat* rules
+   if you added them from my previous version. */
+/* Base card styles: goal header, status badge, progress bar.
+   Put these in Recommendations.css (above the forecast rules). */
 
 .rec-card {
   background: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 20px 22px;
-  margin-bottom: 16px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e2e6ee;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
 }
 
 .rec-card-top {
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 16px;
+  text-align: left;
 }
 
 .rec-goal-name {
+  font-size: 20px;
   font-weight: 700;
-  font-size: 16px;
-  color: #1e293b;
+  color: #1a2233;
 }
 
 .rec-goal-sub {
-  font-size: 12px;
-  color: #64748b;
-  margin-top: 3px;
+  margin-top: 6px;
+  font-size: 14px;
+  color: #64708a;
 }
 
 .rec-badge {
-  padding: 4px 12px;
-  border-radius: 16px;
-  font-size: 11px;
+  flex-shrink: 0;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 13px;
   font-weight: 700;
-  white-space: nowrap;
 }
-
-.rec-badge-early {
-  background: #dcfce7;
-  color: #15803d;
-}
-
-.rec-badge-late {
-  background: #fee2e2;
-  color: #b91c1c;
-}
-
-.rec-badge-ontime {
-  background: #dbeafe;
-  color: #1d4ed8;
-}
-
-.rec-badge-default {
-  background: #f1f5f9;
-  color: #475569;
-}
+.rec-badge-early   { background: #dcfce7; color: #14532d; }
+.rec-badge-ontime  { background: #dcfce7; color: #14532d; }
+.rec-badge-late    { background: #fee2e2; color: #b42318; }
+.rec-badge-default { background: #e8ebf3; color: #3d475c; }
 
 .rec-progress-track {
-  margin-top: 14px;
-  height: 8px;
-  width: 100%;
-  background: #e5e7eb;
-  border-radius: 6px;
+  margin-top: 16px;
+  height: 10px;
+  border-radius: 999px;
+  background: #e5e7ec;
   overflow: hidden;
 }
 
 .rec-progress-fill {
   height: 100%;
-  background: #6d5de8;
-  border-radius: 6px;
-  transition: width 0.5s ease-in-out;
+  border-radius: 999px;
+  background: #6c5ce7;
 }
 
 .rec-progress-label {
-  margin-top: 6px;
-  font-size: 12px;
-  color: #64748b;
+  margin-top: 8px;
+  text-align: center;
+  font-size: 13px;
+  color: #64708a;
 }
 
-.rec-forecast-box {
-  display: flex;
-  gap: 12px;
-  margin-top: 16px;
-  padding: 14px 16px;
-  border-radius: 10px;
-  background: #f5f3ff;
-  border: 1px solid #ede9fe;
+@media (max-width: 600px) {
+  .rec-card-top { flex-direction: column; }
+}
+.rec-forecast {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid #e2e6ee;
 }
 
-.rec-forecast-warning {
-  background: #fff7ed;
-  border-color: #fed7aa;
-}
-
-.rec-forecast-icon {
-  color: #6d5de8;
-  font-size: 18px;
-  margin-top: 2px;
-  flex-shrink: 0;
-}
-
-.rec-forecast-warning .rec-forecast-icon {
-  color: #c2410c;
-}
+.rec-forecast-head { margin-bottom: 16px; }
 
 .rec-forecast-title {
-  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
   font-weight: 700;
-  color: #4338ca;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
+  color: #1a2233;
 }
 
-.rec-forecast-warning .rec-forecast-title {
-  color: #c2410c;
-}
-
-.rec-forecast-message {
-  margin: 4px 0 0;
+.rec-forecast-summary {
+  margin: 6px 0 0;
   font-size: 14px;
-  color: #1e293b;
   line-height: 1.5;
+  color: #64708a;
 }
 
-.rec-forecast-meta {
-  margin-top: 6px;
-  font-size: 12px;
-  color: #6b7280;
+.rec-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
 }
 
-@media (max-width: 640px) {
-  .recommendations-topbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+.rec-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 12px;
+  border-radius: 14px;
+  background: #f8f9fb;
+  text-align: center;
 }
+
+.rec-tile-label { font-size: 13px; color: #64708a; }
+
+.rec-tile-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a2233;
+}
+
+.rec-tile-hint { font-size: 12px; color: #8a94a8; }
+
+.rec-tile-accent { background: #eef0ff; }
+.rec-tile-accent .rec-tile-label { color: #5b56d6; }
+.rec-tile-accent .rec-tile-value { color: #2f2a8f; }
+
+.rec-tile-good { background: #e8faf0; }
+.rec-tile-good .rec-tile-label,
+.rec-tile-good .rec-tile-value { color: #0d6b45; }
+
+.rec-tile-bad { background: #fdecec; }
+.rec-tile-bad .rec-tile-label,
+.rec-tile-bad .rec-tile-value { color: #b42318; }
+
+.rec-forecast-warning .rec-forecast-title { color: #b42318; }
+
+.rec-forecast-points {
+  margin: 14px 0 0;
+  padding-left: 20px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #3d475c;
+}
+.rec-forecast-points li { margin-bottom: 6px; }
