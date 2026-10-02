@@ -5,7 +5,7 @@ export default function StatCard({ label, value, change, changeDir, color, icon 
   return (
     <div className="card">
       <div className="card-header">
-        <span className={`card-icon ${color}`}>{icon}</span>
+        <span className={`card-icon ${color}`}></span>
         <span className="card-label">{label}</span>
       </div>
       <div className={`card-value ${color}`}>{value}</div>

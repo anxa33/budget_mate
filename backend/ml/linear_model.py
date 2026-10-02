@@ -152,8 +152,8 @@ def forecast_goal_completion(
             timing_phrase = " (right on schedule)"
 
     message = (
-        f"Based on your real income and expense trends, you will hit this "
-        f"goal by {predicted_label}{timing_phrase}."
+        f"Based on your real income and expense trends: "
+        # f"goal by {predicted_label}{timing_phrase}."
     )
 
     return {

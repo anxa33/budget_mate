@@ -1,9 +1,10 @@
-/* Append to Recommendations.css.
-   Remove the older .rec-forecast-box / .rec-forecast-icon / .rec-stat* rules
-   if you added them from my previous version. */
-/* Base card styles: goal header, status badge, progress bar.
-   Put these in Recommendations.css (above the forecast rules). */
-
+.recommendations-topbar{
+  position:absolute;
+  right:30px;
+}
+.recommendations-content{
+padding-top:80px;
+}
 .rec-card {
   background: #fff;
   border: 1px solid #e2e6ee;

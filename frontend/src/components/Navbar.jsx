@@ -107,7 +107,6 @@ function Navbar({ onNavigate }) {
           <div className="notif-dropdown">
             <div className="notif-header">
               <span>Notifications</span>
-              <span className="notif-tag">DBSCAN</span>
             </div>
 
             <div className="notif-list">
@@ -134,7 +133,7 @@ function Navbar({ onNavigate }) {
                     {a.note ? ` (${a.note})` : ""}
                   </div>
                   <div className="notif-sub">
-                    {a.times_typical}x your usual ~NPR{" "}
+                    {a.times_typical}x your usual Rs.{" "}
                     {Number(a.typical_amount).toLocaleString()}
                   </div>
                 </div>

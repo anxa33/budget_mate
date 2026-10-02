@@ -11,15 +11,6 @@ from ml.linear_model import forecast_goal_completion
 
 
 router = APIRouter()
-
-
-# =====================================================
-# SHARED HELPER: last N months of real income and expense
-# history, oldest first, as two aligned lists.
-# Used by the Linear Regression completion-date forecast,
-# which fits an independent trend on each series.
-# =====================================================
-
 def _get_monthly_income_expense_history(cursor, user_id: int, months: int = 6):
     cursor.execute("""
         SELECT
@@ -59,22 +50,14 @@ def _get_monthly_income_expense_history(cursor, user_id: int, months: int = 6):
     return monthly_income, monthly_expense
 
 
-# =====================================================
 # GOAL INPUT MODEL
-# =====================================================
-
 class GoalRequest(BaseModel):
     goal_name: str
     target_amount: float
     target_date: str
     current_savings: float = 0
 
-
-# =====================================================
-# GOAL OPTIMIZER
-# =====================================================
-
-@router.post("/optimize-goal")
+@router.post("/optimize-goal",tags=["Goal Optimization"])
 def optimize_goal(goal: GoalRequest, current_user: dict = Depends(get_current_user)):
 
     if goal.target_amount <= 0:
@@ -105,10 +88,7 @@ def optimize_goal(goal: GoalRequest, current_user: dict = Depends(get_current_us
             detail="Target date must be in the future"
         )
 
-    # =================================================
-    # CALCULATE MONTHS REMAINING
-    # =================================================
-
+    # Months remaining
     months_remaining = (
         (target_date.year - today.year) * 12
         + target_date.month - today.month
@@ -121,15 +101,9 @@ def optimize_goal(goal: GoalRequest, current_user: dict = Depends(get_current_us
 
     months_remaining = max(months_remaining, 1)
 
-
-    # =================================================
-    # REMAINING AMOUNT
-    # =================================================
-
     remaining_amount = (
         goal.target_amount - goal.current_savings
     )
-
     # Goal already achieved
     if remaining_amount <= 0:
 
@@ -157,20 +131,11 @@ def optimize_goal(goal: GoalRequest, current_user: dict = Depends(get_current_us
             ),
         }
 
-
-    # =================================================
-    # DATABASE
-    # =================================================
-
     conn = get_connection()
     cursor = conn.cursor(cursor_factory=RealDictCursor)
 
     try:
-
-        # ---------------------------------------------
         # Average monthly income
-        # ---------------------------------------------
-
         cursor.execute("""
             SELECT
                 COALESCE(AVG(monthly_income), 0) AS average_income
@@ -190,12 +155,7 @@ def optimize_goal(goal: GoalRequest, current_user: dict = Depends(get_current_us
         average_income = float(
             income_result["average_income"] or 0
         )
-
-
-        # ---------------------------------------------
         # Average monthly expenses
-        # ---------------------------------------------
-
         cursor.execute("""
             SELECT
                 COALESCE(AVG(monthly_expense), 0) AS average_expense
@@ -215,12 +175,7 @@ def optimize_goal(goal: GoalRequest, current_user: dict = Depends(get_current_us
         average_expense = float(
             expense_result["average_expense"] or 0
         )
-
-
-        # ---------------------------------------------
         # Current average monthly saving
-        # ---------------------------------------------
-
         current_monthly_saving = (
             average_income - average_expense
         )
@@ -230,11 +185,7 @@ def optimize_goal(goal: GoalRequest, current_user: dict = Depends(get_current_us
             0
         )
 
-
-        # =================================================
-        # REQUIRED MONTHLY SAVING
-        # =================================================
-
+        # Required monthly saving to reach the goal
         required_monthly_saving = (
             remaining_amount / months_remaining
         )
@@ -244,11 +195,7 @@ def optimize_goal(goal: GoalRequest, current_user: dict = Depends(get_current_us
             2
         )
 
-
-        # =================================================
-        # ADDITIONAL SAVING REQUIRED
-        # =================================================
-
+        # additional required saving
         additional_saving = (
             required_monthly_saving
             - current_monthly_saving
@@ -263,12 +210,7 @@ def optimize_goal(goal: GoalRequest, current_user: dict = Depends(get_current_us
             additional_saving,
             2
         )
-
-
-        # =================================================
-        # EXPENSE CATEGORY ANALYSIS
-        # =================================================
-
+        # expense category analysis for recommendations
         cursor.execute("""
             SELECT
                 category,
@@ -281,26 +223,13 @@ def optimize_goal(goal: GoalRequest, current_user: dict = Depends(get_current_us
         """, (current_user["user_id"],))
 
         categories = cursor.fetchall()
-
-
-        # =================================================
-        # GENERATE RECOMMENDATIONS (Greedy Optimizer)
-        # See ml/greedy_optimizer.py
-        # =================================================
-
+        # recommendation generation (Greedy Optimizer)
         recommendations = greedy_expense_reduction(
             categories=[dict(c) for c in categories],
             additional_saving_needed=additional_saving,
         )
 
-
-        # =================================================
-        # LINEAR REGRESSION COMPLETION-DATE FORECAST
-        # See ml/linear_model.py - fits an independent trend
-        # on income and on expense, rather than on their
-        # difference, for a more accurate projection.
-        # =================================================
-
+        # Linear regression completion date forecast
         monthly_income_history, monthly_expense_history = _get_monthly_income_expense_history(
             cursor, current_user["user_id"], months=6
         )
@@ -312,12 +241,7 @@ def optimize_goal(goal: GoalRequest, current_user: dict = Depends(get_current_us
             target_amount=goal.target_amount,
             target_date=goal.target_date,
         )
-
-
-        # =================================================
-        # FEASIBILITY
-        # =================================================
-
+ # feasibility
         if current_monthly_saving >= required_monthly_saving:
 
             feasibility = "Achievable"
@@ -349,10 +273,7 @@ def optimize_goal(goal: GoalRequest, current_user: dict = Depends(get_current_us
             )
 
 
-        # =================================================
-        # RETURN RESULT
-        # =================================================
-
+#  results
         return {
 
             "goal_name": goal.goal_name,
@@ -416,7 +337,7 @@ def optimize_goal(goal: GoalRequest, current_user: dict = Depends(get_current_us
 
         close_connection(conn, cursor)
 
-@router.get("/goals-recommendations")
+@router.get("/goals-recommendations",tags=["Goals"])
 def get_goals_recommendations(current_user: dict = Depends(get_current_user)):
 
     conn = get_connection()
@@ -538,7 +459,7 @@ def save_goal(goal: SaveGoalRequest, current_user: dict = Depends(get_current_us
         close_connection(conn, cursor)
 
 
-@router.get("/goals")
+@router.get("/goals",tags=["Goals"])
 def get_goals(current_user: dict = Depends(get_current_user)):
 
     conn = get_connection()

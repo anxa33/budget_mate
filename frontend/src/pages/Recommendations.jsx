@@ -21,9 +21,6 @@ function statusStyle(status) {
       return { badge: "rec-badge-default", label: "Forecast" };
   }
 }
-
-// Break the backend's long forecast message into short, readable points.
-// Splits on sentence ends (but not on "Rs.") and on semicolons.
 function splitMessage(message) {
   if (!message) return [];
   return message
@@ -88,6 +85,7 @@ function getGoalHit(forecast, remaining, deadline) {
   return { value: fmtDate(date), hint };
 }
 
+
 function ForecastBlock({ forecast, item }) {
   const isWarning = forecast.feasible === false;
   const [summary, ...details] = splitMessage(forecast.message);
@@ -122,10 +120,6 @@ function ForecastBlock({ forecast, item }) {
   return (
     <div className={`rec-forecast ${isWarning ? "rec-forecast-warning" : ""}`}>
       <div className="rec-forecast-head">
-        {/* <div className="rec-forecast-title">
-          {isWarning ? <FaExclamationTriangle /> : <FaCalendarCheck />}
-          Linear Regression Forecast
-        </div> */}
         <p className="rec-forecast-summary">
           {summary || "Not enough transaction history yet to build a forecast."}
         </p>
@@ -240,10 +234,9 @@ export default function Recommendations({ onNavigate }) {
   return (
     
     <div className="recommendations-page">
-      <Navbar/>
+      
       <div className="recommendations-topbar">
-       
-        
+        <Navbar/>
       </div>
       <div className="recommendations-content">
         {loading ? (

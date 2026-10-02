@@ -118,14 +118,14 @@ export default function Dashboard({ onNavigate }) {
         </div> */}
       </div>
 
-      {/* Bottom row */}
+      
       <div className="bottom-row">
         <div className="card transactions-card">
           <h3 className="card-title">Recent Transactions</h3>
           <RecentTransactions />
         </div>
         <div>
-          {/* <Recommendations /> */}
+         <notifications />
         </div>
       </div>
     </div>

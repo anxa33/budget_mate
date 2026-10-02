@@ -3,16 +3,14 @@ import React, { useState } from 'react';
 const GoalOptimizerResult = ({ optimizerData, token, onGoalSaved }) => {
   const [isSaving, setIsSaving] = useState(false);
   const [savedSuccess, setSavedSuccess] = useState(false);
-
-  // Calculate completion percentage: (current_savings / target_amount) * 100
+  // completion percentage: (current_savings / target_amount) * 100
   const rawPercentage = (optimizerData.current_savings / optimizerData.target_amount) * 100;
   const progressPercentage = Math.min(Math.max(rawPercentage, 0), 100).toFixed(1);
-
-  // Dynamic progress bar color based on progress percentage
+// progress bar
   const getBarColor = (percent) => {
-    if (percent >= 100) return '#22c55e'; // Green (Completed)
-    if (percent >= 50) return '#3b82f6';  // Blue (In Progress)
-    return '#f59e0b';                    // Amber (Early Stage)
+    if (percent >= 100) return '#22c55e'; 
+    if (percent >= 50) return '#3b82f6'; 
+    return '#f59e0b';                    
   };
 
   // Handler to call the /save-goal endpoint
