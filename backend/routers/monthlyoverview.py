@@ -13,7 +13,7 @@ def monthly_overview(current_user=Depends(get_current_user)):
     cursor = conn.cursor()
 
     try:
-        # Corrected SQL: Combines income and expenses by month properly before summing
+        #combining income and expenses by month
         query = """
             SELECT
                 TO_CHAR(month, 'Mon') AS month,
@@ -61,7 +61,6 @@ def monthly_overview(current_user=Depends(get_current_user)):
         raise HTTPException(status_code=500, detail=str(e))
 
     finally:
-        # Guarantees the database connection is closed even if an error occurs
         close_connection(conn, cursor)
 
 

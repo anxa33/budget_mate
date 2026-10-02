@@ -10,8 +10,8 @@ export default function StatCard({ label, value, change, changeDir, color, icon 
       </div>
       <div className={`card-value ${color}`}>{value}</div>
       <div className={`card-change ${isUp ? "up" : "down"}`}>
-        <span>{isUp ? "↑" : "↓"}</span>
-        <span>{change} vs last month</span>
+        {/* <span>{isUp ? "↑" : "↓"}</span>
+        <span>{change} vs last month</span> */}
       </div>
     </div>
   );

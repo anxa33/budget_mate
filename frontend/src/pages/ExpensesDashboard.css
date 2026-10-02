@@ -70,18 +70,19 @@ Main Expenses Dashboard
 
 /* Import CSV Button */
 .import-csv-button {
-  display: flex;
+ display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
   padding: 12px 20px;
-  border: 1px solid #d1d5db;
+  border: none;
   border-radius: 8px;
-  background-color: #fff;
-  color: #374151;
-  font-size: 14px;
+  background-color: #5546bd;
+  color: white;
+  font-size: 16px;
   font-weight: 500;
   cursor: pointer;
+
 }
 
 .import-csv-button:hover {

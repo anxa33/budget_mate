@@ -22,15 +22,18 @@
 .card-label {
   font-size: 12.5px;
   color: #888;
-  font-weight: 500;
+  /* font-weight: 500; */
   text-transform: uppercase;
-  letter-spacing: 0.4px;
+  /* letter-spacing: 0.4px; */
+  text-align: left;
 }
 
 .card-value {
   font-size: 26px;
   font-weight: 700;
   letter-spacing: -0.5px;
+  text-align: left;
+  PADDING-LEFT: 5px;
 }
 
 .card-value.green { color: #16a34a; }

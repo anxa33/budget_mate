@@ -36,7 +36,6 @@ app.include_router(auth.router)
 app.include_router(transaction.router, prefix="/api")
 app.include_router(monthlyoverview.router)
 app.include_router(notifications.router)
-
 @app.get("/")
 def home():
     return {
