@@ -16,7 +16,7 @@ class Expense(BaseModel):
     payment_method: str
     note: str = ""
 
-@router.post("/add-expense")
+@router.post("/add-expense",tags=["Expenses"])
 def add_expense(expense: Expense, current_user: dict = Depends(get_current_user)):
 
     if expense.amount < 0:
@@ -66,7 +66,7 @@ def add_expense(expense: Expense, current_user: dict = Depends(get_current_user)
     finally:
         close_connection(conn, cursor)
 
-@router.get("/expenses")
+@router.get("/expenses",tags=["Expenses"])
 def get_expenses(
     limit: Optional[int] = Query(default=None, ge=1, le=1000),
     current_user: dict = Depends(get_current_user)
@@ -113,7 +113,7 @@ def get_expenses(
         close_connection(conn, cursor)
 
 
-@router.get("/expenses/{expense_id}")
+@router.get("/expenses/{expense_id}",tags=["Expenses"])
 def get_single_expense(expense_id: int, current_user: dict = Depends(get_current_user)):
 
     conn = get_connection()
@@ -155,7 +155,7 @@ class ExpenseUpdate(BaseModel):
     note: str = ""
 
 
-@router.put("/expenses/{expense_id}")
+@router.put("/expenses/{expense_id}",tags=["Expenses"])
 def update_expense(
     expense_id: int,
     expense: ExpenseUpdate,
@@ -227,7 +227,7 @@ def update_expense(
     finally:
         close_connection(conn, cursor)
 
-@router.delete("/expenses/{expense_id}")
+@router.delete("/expenses/{expense_id}",tags=["Expenses"])
 def delete_expense(expense_id: int, current_user: dict = Depends(get_current_user)):
 
     conn = get_connection()
@@ -270,7 +270,7 @@ def delete_expense(expense_id: int, current_user: dict = Depends(get_current_use
     finally:
         close_connection(conn, cursor)
 
-@router.get("/expense-chart")
+@router.get("/expense-chart",tags=["Expenses"])
 def expense_chart(current_user: dict = Depends(get_current_user)):
 
     conn = get_connection()
@@ -320,7 +320,7 @@ def get_monthly_total(current_user: dict = Depends(get_current_user)):
     finally:
         close_connection(conn, cursor)
 
-@router.get("/expense-summary")
+@router.get("/expense-summary",tags=["Expenses"])
 def expense_summary(current_user: dict = Depends(get_current_user)):
 
     user_id = current_user["user_id"]

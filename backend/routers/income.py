@@ -16,7 +16,7 @@ class Income(BaseModel):
     income_date: str
     note: str = ""
 
-@router.post("/add-income")
+@router.post("/add-income", tags=["Income"])
 def add_income(income: Income, current_user: dict = Depends(get_current_user)):
 
     if income.amount < 0:
@@ -67,7 +67,7 @@ def add_income(income: Income, current_user: dict = Depends(get_current_user)):
         close_connection(conn, cursor)
 
 
-@router.get("/income")
+@router.get("/income", tags=["Income"])
 def get_income(
     limit: Optional[int] = Query(default=None, ge=1, le=1000),
     current_user: dict = Depends(get_current_user)
@@ -107,7 +107,7 @@ def get_income(
         close_connection(conn, cursor)
 
 
-@router.get("/income/{income_id}")
+@router.get("/income/{income_id}", tags=["Income"])
 def get_single_income(income_id: int, current_user: dict = Depends(get_current_user)):
 
     conn = get_connection()
@@ -150,7 +150,7 @@ class IncomeUpdate(BaseModel):
     note: str = ""
 
 
-@router.put("/income/{income_id}")
+@router.put("/income/{income_id}", tags=["Income"])
 def update_income(
     income_id: int,
     income: IncomeUpdate,
@@ -221,7 +221,7 @@ def update_income(
 
     finally:
         close_connection(conn, cursor)
-@router.get("/income-summary")
+@router.get("/income-summary", tags=["Income"])
 def income_summary(current_user: dict = Depends(get_current_user)):
 
     user_id = current_user["user_id"]
@@ -346,7 +346,7 @@ def income_summary(current_user: dict = Depends(get_current_user)):
     finally:
         close_connection(conn, cursor)
 
-@router.delete("/income/{income_id}")
+@router.delete("/income/{income_id}", tags=["Income"])
 def delete_income(income_id: int, current_user: dict = Depends(get_current_user)):
 
     conn = get_connection()
