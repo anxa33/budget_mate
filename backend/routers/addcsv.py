@@ -83,7 +83,8 @@ async def upload_csv(
 
             if transaction_type in [
                 "income",
-                "deposit"
+                "deposit",
+                "Credit"
             ]:
 
                 description_lower = (
@@ -205,7 +206,8 @@ async def upload_csv(
 
             elif transaction_type in [
                 "expense",
-                "withdraw"
+                "withdraw",
+                "Debit"
             ]:
 
                 description_lower = (
