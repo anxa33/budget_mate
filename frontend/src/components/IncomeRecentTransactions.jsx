@@ -152,7 +152,8 @@ export default function IncomeRecentTransactions({
   return (
     <div className="income-card-panel">
       <div className="income-table-header">
-        <span className="expense-card-title">Recent Income Transactions (Last {recentLimit})</span>
+        {/* <span className="expense-card-title">Recent Income Transactions (Last {recentLimit})</span> */}
+        <span className="expense-card-title">Recent Income Transactions</span>
         <div className="income-table-controls">
           <div style={{ position: "relative" }}>
             <span className="income-search-icon"><FaMagnifyingGlass/></span>

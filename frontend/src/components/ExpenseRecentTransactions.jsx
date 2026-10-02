@@ -190,7 +190,9 @@ export default function ExpenseRecentTransactions({
   return (
     <div className="expense-card">
       <div className="expense-table-header">
-        <span className="expense-card-title">Recent Transactions (Last {recentLimit})</span>
+        <span className="expense-card-title">Recent Transactions</span>
+                {/* <span className="expense-card-title">Recent Transactions (Last {recentLimit})</span> */}
+
         <div className="expense-table-controls">
           <div style={{ position: "relative" }}>
             <span className="expense-search-icon"><FaSearch/></span>
