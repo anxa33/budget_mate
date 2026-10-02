@@ -11,7 +11,7 @@ from routers.auth import get_current_user
 from routers import transaction
 # from monthlyoverview import monthly_overview
 from routers import monthlyoverview
-
+from routers import notifications
 app = FastAPI()
 
 app.add_middleware(
@@ -35,6 +35,7 @@ app.include_router(goal.router)
 app.include_router(auth.router)
 app.include_router(transaction.router, prefix="/api")
 app.include_router(monthlyoverview.router)
+app.include_router(notifications.router)
 
 @app.get("/")
 def home():
