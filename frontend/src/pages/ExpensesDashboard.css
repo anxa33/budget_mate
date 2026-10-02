@@ -111,7 +111,6 @@ Main Expenses Dashboard
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
 }
 
-/* Close Button */
 .close-expense-modal {
   position: absolute;
   top: 15px;
@@ -140,11 +139,7 @@ Main Expenses Dashboard
   padding-top: 30px;
   border: 1px solid rgb(224, 218, 218);
 }
-
-/* ===================================================
-   Shared "card" look used by stat cards / chart cards /
-   table card (also reused by the Income page)
-=================================================== */
+/* cards */
 .expense-card, .income-card-panel {
   background: #fff;
   border: 0.5px solid #e5e7eb;
@@ -213,7 +208,7 @@ Main Expenses Dashboard
 }
 
 .expense-stat-sub.up { color: #dc2626; }
-.expense-stat-sub.down { color: #059669; }
+.expense-stat-sub.down { color: red}
 .income-stat-sub.up { color: #059669; }
 .income-stat-sub.down { color: #dc2626; }
 
